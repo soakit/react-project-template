@@ -1,24 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
-import { Provider } from 'react-redux'
 
 import * as serviceWorker from './serviceWorker'
 
 import App from './App'
-import store from '@/store/index'
 import './assets/css/base.less'
 import 'antd-mobile/dist/antd-mobile.css'
 import './assets/css/reset-antd.less'
 
 const render = Component => {
   ReactDOM.render(
-    // 绑定redux、热加载
-    <Provider store={store}>
-      <AppContainer>
-        <Component />
-      </AppContainer>
-    </Provider>,
+    <Component />,
     document.getElementById('root')
   )
 }

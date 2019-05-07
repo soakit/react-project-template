@@ -19,13 +19,13 @@ const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
-const modules = require('./modules');
 const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 
 const postcssNormalize = require('postcss-normalize');
+const modules = require('./modules');
 const paths = require('./paths');
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -392,6 +392,18 @@ module.exports = function(webpackEnv) {
                 // debugger to show the original code. Instead, the code
                 // being evaluated would be much more helpful.
                 sourceMaps: false,
+              },
+            },
+            {
+              test: /\.(js|jsx)$/,
+              include: paths.appSrc,
+              loader: require.resolve('babel-loader'),
+              options: {
+                // This is a feature of `babel-loader` for webpack (not Babel itself).
+                // It enables caching results in ./node_modules/.cache/babel-loader/
+                // directory for faster rebuilds.
+                cacheDirectory: true,
+                plugins: ['react-hot-loader/babel'],
               },
             },
             // "postcss" loader applies autoprefixer to our CSS.
