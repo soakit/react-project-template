@@ -1,9 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { AppContainer } from 'react-hot-loader'
-
 import * as serviceWorker from './serviceWorker'
-
 import App from './App'
 import './assets/css/base.less'
 import 'antd-mobile/dist/antd-mobile.css'
