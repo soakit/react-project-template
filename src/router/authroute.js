@@ -11,9 +11,12 @@ class AuthRoute extends React.Component {
     if (publicList.indexOf(pathname) > -1) {
       return
     }
-    if (!localStorage.getItem('isLogined')) {
-      this.props.history.push('/login')
-    }
+    // TODO: validate user login status
+    setTimeout(() => {
+      if (!localStorage.getItem('isLogined')) {
+        this.props.history.push('/login')
+      }
+    }, 200)
   }
 
   render() {
