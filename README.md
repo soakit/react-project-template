@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Steps to build
+
+[HOWTO](https://github.com/soakit/react-project-template/blob/master/HOWTO.md)
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -1,7 +1,6 @@
 {
-  "name": "my-app",
+  "name": "react-project-template",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@babel/core": "7.4.3",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
