@@ -1,9 +1,30 @@
 import axios from 'axios'
+import { Toast } from 'antd-mobile'
 
-// TODO:
+// CORS时使用
 const envconfig = {
   baseURL: '',
 }
+
+const instance = axios.create()
+
+instance.interceptors.request.use(function(config) {
+  Toast.loading('Loading...', 30)
+  // hideLoading为true时不显示Loading
+  !config.hideLoading && Toast.loading('Loading...', 30)
+  return config
+})
+
+instance.interceptors.response.use(
+  function(res) {
+    Toast.hide()
+    return res
+  },
+  function(error) {
+    Toast.hide()
+    return Promise.reject(error)
+  }
+)
 
 /**
  * 主要params参数
@@ -19,7 +40,6 @@ const envconfig = {
  * 其他更多拓展参看axios文档后 自行拓展
  * 注意：params中的数据会覆盖method url 参数，所以如果指定了这2个参数则不需要在params中带入
  */
-
 export default function(method, url, params) {
   return new Promise((resolve, reject) => {
     if (typeof params !== 'object') params = {}
@@ -38,7 +58,7 @@ export default function(method, url, params) {
       },
       ...params,
     }
-    axios.request(par).then(
+    instance.request(par).then(
       res => {
         resolve(typeof res.data === 'object' ? res.data : JSON.parse(res.data))
       },
