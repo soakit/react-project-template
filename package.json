@@ -14,8 +14,10 @@
     "babel-jest": "24.7.1",
     "babel-loader": "8.0.5",
     "babel-plugin-named-asset-import": "^0.3.2",
+    "babel-plugin-transform-dynamic-import": "^2.1.0",
     "babel-preset-react-app": "^8.0.0",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
+    "cross-env": "^5.2.0",
     "css-loader": "2.1.1",
     "dotenv": "6.2.0",
     "dotenv-expand": "4.2.0",
@@ -66,8 +68,9 @@
     "workbox-webpack-plugin": "4.2.0"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
+    "start": "cross-env CUSTOM_ENV=development node scripts/start.js",
+    "build4sit": "cross-env CUSTOM_ENV=sit node scripts/build.js",
+    "build": "cross-env CUSTOM_ENV=production node scripts/build.js",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {

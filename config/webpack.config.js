@@ -506,6 +506,7 @@ module.exports = function(webpackEnv) {
           {
             inject: true,
             template: paths.appHtml,
+            env: process.env.CUSTOM_ENV,
           },
           isEnvProduction
             ? {
