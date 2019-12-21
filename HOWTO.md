@@ -41,7 +41,7 @@
    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/, /redux-logger$/, /redux-devtools-extension$/),
    ```
 
-8. lodash 的优化(注意与 rc-form 使用时有问题)
+8. lodash 的优化
 
    - babel-plugin-lodash
    - lodash-webpack-plugin
