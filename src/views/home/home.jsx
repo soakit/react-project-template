@@ -4,12 +4,12 @@ import { connect } from 'react-redux'
 import mixin, { padStr } from '@/utils/mixin'
 import './home.less'
 
-import { actions as homeActions } from '@/store/home.redux'
+import { homeActions } from '@/store/home.redux'
 
 const { getAllRecords } = homeActions
 
 @connect(
-  state => state.homeData,
+  state => state.home,
   {
     getAllRecords,
   }

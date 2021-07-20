@@ -1,8 +1,8 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import { reducer as homeReducer } from './home.redux'
-import { reducer as contactsReducer } from './contacts.redux'
-import { reducer as loginReducer } from './login.redux'
+import { homeReducer } from './home.redux'
+import { contactsReducer } from './contacts.redux'
+import { loginReducer } from './login.redux'
 
 // 创建一个中间件集合
 let middleware = applyMiddleware(thunk)
@@ -20,9 +20,13 @@ if (process.env.NODE_ENV !== 'production') {
   middleware = applyMiddleware(thunk)
 }
 
-const store = createStore(
-  combineReducers({ ...homeReducer, ...contactsReducer, ...loginReducer }),
-  middleware
-)
+// key就相当于命名空间
+const rootReducers = combineReducers({
+  home: homeReducer,
+  contacts: contactsReducer,
+  user: loginReducer,
+})
+
+const store = createStore(rootReducers, middleware)
 
 export default store

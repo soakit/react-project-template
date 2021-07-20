@@ -5,10 +5,10 @@ const home = {
   GET_CONTACTS_LIST: Symbol('GET_CONTACTS_LIST'),
 }
 
-export const actions = {
+export const contactsActions = {
   // 保存表单数据
   getContactsList: () => {
-    return async dispatch => {
+    return async (dispatch) => {
       const result = [1, 2, 3] // await api('get', '/getContactsList')
       dispatch({
         type: home.GET_CONTACTS_LIST,
@@ -19,16 +19,13 @@ export const actions = {
 }
 
 const defaultState = {
-  contactsList: [0, 0, 0],
+  contactsList: [],
 }
-export const reducer = {
-  // 首页表单数据
-  contactsData: (state = defaultState, action = {}) => {
-    switch (action.type) {
-      case home.GET_CONTACTS_LIST:
-        return { ...state, ...action }
-      default:
-        return state
-    }
-  },
+export const contactsReducer = (state = defaultState, action = {}) => {
+  switch (action.type) {
+    case home.GET_CONTACTS_LIST:
+      return { ...state, ...action }
+    default:
+      return state
+  }
 }

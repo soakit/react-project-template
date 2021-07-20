@@ -3,14 +3,14 @@ import { List, InputItem, WingBlank, WhiteSpace, Button } from 'antd-mobile'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import './login.less'
-import { actions as loginActions } from '@/store/login.redux'
+import { loginActions } from '@/store/login.redux'
 import { createForm } from 'rc-form'
 
 const { login } = loginActions
 
 @createForm()
 @connect(
-  state => state.userData,
+  state => state.user,
   {
     login,
   }

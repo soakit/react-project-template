@@ -7,10 +7,10 @@ const login = {
   LOAD_DATA: Symbol('LOAD_DATA'),
 }
 
-export const actions = {
+export const loginActions = {
   // login
-  login: data => {
-    return async dispatch => {
+  login: (data) => {
+    return async (dispatch) => {
       // const res = await api('post', '/login', data)
       // TODO: 判断res
       // if (true) {
@@ -32,7 +32,7 @@ export const actions = {
       // }
     }
   },
-  loadData: userinfo => {
+  loadData: (userinfo) => {
     return { type: login.LOAD_DATA, payload: userinfo }
   },
   logout() {
@@ -48,19 +48,17 @@ const defaultState = {
   type: '',
 }
 
-export const reducer = {
-  userData: (state = defaultState, action = {}) => {
-    switch (action.type) {
-      case login.AUTH_SUCCESS:
-        return { ...state, msg: '', ...action.payload }
-      case login.LOAD_DATA:
-        return { ...state, ...action.payload }
-      case login.ERROR_MSG:
-        return { ...state, isAuth: false, msg: action.msg }
-      case login.LOGOUT:
-        return { ...defaultState, redirectTo: '/login' }
-      default:
-        return state
-    }
-  },
+export const loginReducer = (state = defaultState, action = {}) => {
+  switch (action.type) {
+    case login.AUTH_SUCCESS:
+      return { ...state, msg: '', ...action.payload }
+    case login.LOAD_DATA:
+      return { ...state, ...action.payload }
+    case login.ERROR_MSG:
+      return { ...state, isAuth: false, msg: action.msg }
+    case login.LOGOUT:
+      return { ...defaultState, redirectTo: '/login' }
+    default:
+      return state
+  }
 }

@@ -5,17 +5,17 @@ import { Redirect } from 'react-router-dom'
 import mixin, { padStr } from '@/utils/mixin'
 import './contacts.less'
 
-import { actions as contactsActions } from '@/store/contacts.redux'
-import { actions as loginActions } from '@/store/login.redux'
+import { contactsActions } from '@/store/contacts.redux'
+import { loginActions } from '@/store/login.redux'
 
 const { logout } = loginActions
 
 const { getContactsList } = contactsActions
 
 @connect(
-  state => ({
-    ...state.userData,
-    ...state.contactsData,
+  (state) => ({
+    ...state.user, // 取出user 空间下的所有state数据
+    ...state.contacts,
   }),
   {
     logout,
@@ -25,7 +25,7 @@ const { getContactsList } = contactsActions
 @mixin({ padStr })
 class Contacts extends Component {
   componentDidMount() {
-    // this.props.getContactsList()
+    this.props.getContactsList()
   }
 
   handleLogout() {
@@ -47,7 +47,7 @@ class Contacts extends Component {
         <br />
         <ul>
           {contactsList.map((item, index) => (
-            <li key={item.id}>人脉222{item}</li>
+            <li key={item}>人脉222{item}</li>
           ))}
         </ul>
       </div>
